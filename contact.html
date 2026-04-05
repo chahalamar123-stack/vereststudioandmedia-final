@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everest Studio &amp; Media | Contact</title>
+    <meta
+      name="description"
+      content="Request a demo or contact Everest Studio & Media about branding, website, and social media projects."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="nav-wrap">
+          <a class="brand" href="index.html" aria-label="Everest Studio & Media home">
+            <img class="brand-logo" src="logo-main.png" alt="Everest Studio &amp; Media" />
+          </a>
+          <nav class="site-nav" aria-label="Primary">
+            <a href="index.html">Home</a>
+            <a href="services.html">Services</a>
+            <a href="portfolio.html">Why Us</a>
+            <a class="active" href="contact.html">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="page-main">
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <span class="eyebrow">Contact</span>
+              <h1>Tell us what your brand needs next.</h1>
+            </div>
+            <p class="lede">
+              Use the form below to share your project goals, timeline, and company
+              details so Everest Studio &amp; Media can respond with the right next
+              step.
+            </p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="contact-layout">
+            <aside class="contact-card">
+              <span class="eyebrow">Start Here</span>
+              <h3>Let's discuss next steps.</h3>
+              <br>
+              <p>
+                For brand, website, and paid creative engagements. Share the
+                context. We will return with the right approach.
+              </p>
+
+              <div class="contact-list">
+                <div class="contact-list-item">
+                  <strong>Ideal for</strong>
+                  <p>Brand refreshes, website projects, launch campaigns, and ongoing content support.</p>
+                </div>
+                <div class="contact-list-item">
+                  <strong>Response content</strong>
+                  <p>If the fit is right, we schedule a consultation and define scope from there.</p>
+                </div>
+                <div class="contact-list-item">
+                  <strong>Studio email</strong>
+                  <p><a class="inline-link" href="mailto:Amar@EverestStudioandmedia.com">Amar@EverestStudioandmedia.com</a></p>
+                </div>
+                <div class="contact-list-item">
+                  <strong>Inquiry dashboard</strong>
+                  <p><a class="inline-link" href="/admin">Open admin dashboard</a></p>
+                </div>
+              </div>
+            </aside>
+
+            <section class="contact-card">
+              <form data-inquiry-form>
+                <div class="form-grid">
+                  <label for="inquiry-name">
+                    Name
+                    <input id="inquiry-name" name="name" type="text" placeholder="Your name" required />
+                  </label>
+
+                  <label for="inquiry-phone">
+                    Phone number
+                    <input id="inquiry-phone" name="phone" type="tel" placeholder="(555) 555-5555" required />
+                  </label>
+                </div>
+
+                <div class="form-grid">
+                  <label for="inquiry-email">
+                    Email address
+                    <input id="inquiry-email" name="email" type="email" placeholder="you@company.com" required />
+                  </label>
+                </div>
+
+                <label for="inquiry-message">
+                  Message
+                  <textarea
+                    id="inquiry-message"
+                    name="message"
+                    placeholder="Tell us what you need."
+                    required
+                  ></textarea>
+                </label>
+
+                <button class="button button-primary" type="submit">Submit Inquiry</button>
+                <p class="form-note" data-inquiry-status aria-live="polite">
+                  Inquiries are stored in your admin dashboard and replies can come from Amar@EverestStudioandmedia.com.
+                </p>
+              </form>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-card">
+          <div class="footer-block">
+            <p>A direct inquiry experience for brands that value clarity and discretion.</p>
+            <a class="footer-link" href="mailto:Amar@EverestStudioandmedia.com">Amar@EverestStudioandmedia.com</a>
+          </div>
+          <div class="footer-block footer-block-end">
+            <a class="button button-secondary footer-admin-button" href="/admin">Admin Login</a>
+            <p>&copy; 2026 Everest Studio &amp; Media</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

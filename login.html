@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everest Studio &amp; Media | Admin Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <main class="page-main admin-auth-shell">
+        <section class="auth-panel">
+          <span class="eyebrow">Admin Access</span>
+          <h1>Login</h1>
+          <p class="lede">Enter your credentials to review incoming inquiries.</p>
+          <p class="form-note admin-subtitle">
+            This dashboard stores every website inquiry so you can review them in one place.
+          </p>
+          <form class="auth-form" data-login-form>
+            <label for="username">
+              Username
+              <input id="username" name="username" type="text" required />
+            </label>
+            <label for="password">
+              Password
+              <input id="password" name="password" type="password" required />
+            </label>
+            <button class="button button-primary" type="submit">Login</button>
+            <p class="form-note" data-login-status aria-live="polite"></p>
+          </form>
+          <a class="inline-link admin-back-link" href="index.html">Back to website</a>
+        </section>
+      </main>
+      <script src="script.js"></script>
+    </div>
+  </body>
+</html>
