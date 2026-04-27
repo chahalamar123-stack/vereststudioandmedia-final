@@ -48,7 +48,7 @@ async function handleInquiryForm() {
       }
 
       form.reset();
-      status.textContent = "Inquiry received. It is saved to your dashboard and you can reply from Amar@EverestStudioandmedia.com.";
+      status.textContent = "Inquiry received. It is saved to your dashboard and you can reply from contact@EverestStudioandMedia.com.";
       status.dataset.state = "success";
     } catch (error) {
       status.textContent = error.message;
@@ -101,6 +101,45 @@ async function handleLoginForm() {
       status.dataset.state = "error";
     }
   });
+}
+
+function initSmartHeader() {
+  const header = document.querySelector(".site-header");
+
+  if (!header) {
+    return;
+  }
+
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  function updateHeader() {
+    const currentScrollY = window.scrollY;
+    const scrollingDown = currentScrollY > lastScrollY;
+    const shouldHide = scrollingDown && currentScrollY > 140;
+
+    header.classList.toggle("is-hidden", shouldHide);
+
+    if (currentScrollY <= 24) {
+      header.classList.remove("is-hidden");
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) {
+        return;
+      }
+
+      ticking = true;
+      window.requestAnimationFrame(updateHeader);
+    },
+    { passive: true }
+  );
 }
 
 async function loadAdminDashboard() {
@@ -196,6 +235,7 @@ async function loadAdminDashboard() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initSmartHeader();
   handleInquiryForm();
   handleLoginForm();
   loadAdminDashboard();
