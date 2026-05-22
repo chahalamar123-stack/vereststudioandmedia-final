@@ -33,7 +33,7 @@ async function handleInquiryForm() {
     status.dataset.state = "pending";
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/submit-inquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -48,7 +48,7 @@ async function handleInquiryForm() {
       }
 
       form.reset();
-      status.textContent = "Inquiry received. We'll be in touch from contact@evereststudioandmedia.com.";
+      status.textContent = "Inquiry received. It is saved to your dashboard and you can reply from contact@EverestStudioandMedia.com.";
       status.dataset.state = "success";
     } catch (error) {
       status.textContent = error.message;
