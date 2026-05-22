@@ -3,30 +3,124 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Everest Studio &amp; Media | Admin</title>
+    <title>Everest Studio &amp; Media | Inquiry Dashboard</title>
+    <meta
+      name="description"
+      content="Premium admin dashboard for Everest Studio & Media inquiries."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="site-shell">
-      <main class="page-main admin-shell">
-        <section class="section">
-          <div class="admin-header">
+    <div class="site-shell admin-surface">
+      <main class="page-main admin-shell" data-admin-dashboard>
+        <section class="section admin-dashboard-head">
+          <div class="admin-hero-card">
             <div>
               <span class="eyebrow">Inquiry Dashboard</span>
-              <h1>Recent inquiries</h1>
-              <p class="form-note admin-subtitle">Every form submission from the site is saved here.</p>
+              <h1>Every lead, organized.</h1>
+              <p class="lede admin-hero-copy">
+                Review new inquiries, track follow-up progress, and keep the Everest pipeline moving with clarity.
+              </p>
             </div>
-            <div class="admin-actions">
-              <button class="button button-secondary" type="button" data-refresh-button>Refresh</button>
-              <button class="button button-secondary" type="button" data-logout-button>Logout</button>
+            <div class="admin-hero-meta">
+              <span class="admin-meta-label">Database</span>
+              <strong data-admin-source>Loading...</strong>
             </div>
           </div>
         </section>
 
-        <section class="section">
-          <div class="admin-grid" data-inquiries-list></div>
-          <p class="lede" data-inquiries-empty hidden>No inquiries yet.</p>
+        <section class="section admin-stats-grid">
+          <article class="admin-stat-card">
+            <span class="admin-stat-label">Total inquiries</span>
+            <strong class="admin-stat-value" data-stat-total>0</strong>
+          </article>
+          <article class="admin-stat-card">
+            <span class="admin-stat-label">New</span>
+            <strong class="admin-stat-value" data-stat-new>0</strong>
+          </article>
+          <article class="admin-stat-card">
+            <span class="admin-stat-label">Contacted</span>
+            <strong class="admin-stat-value" data-stat-contacted>0</strong>
+          </article>
+          <article class="admin-stat-card">
+            <span class="admin-stat-label">Closed</span>
+            <strong class="admin-stat-value" data-stat-closed>0</strong>
+          </article>
         </section>
+
+        <section class="section">
+          <div class="admin-panel">
+            <div class="admin-toolbar">
+              <label class="admin-search-field" for="admin-search">
+                <span>Search</span>
+                <input
+                  id="admin-search"
+                  type="search"
+                  placeholder="Search by name, email, phone, or message"
+                  data-admin-search
+                />
+              </label>
+
+              <label class="admin-filter-field" for="admin-status-filter">
+                <span>Status</span>
+                <select id="admin-status-filter" data-admin-status-filter>
+                  <option value="All">All statuses</option>
+                  <option value="New">New</option>
+                  <option value="Contacted">Contacted</option>
+                  <option value="Closed">Closed</option>
+                </select>
+              </label>
+
+              <div class="admin-toolbar-actions">
+                <button class="button button-secondary" type="button" data-refresh-button>Refresh</button>
+                <button class="button button-secondary" type="button" data-logout-button>Logout</button>
+              </div>
+            </div>
+
+            <p class="form-note admin-toolbar-status" data-admin-toolbar-status aria-live="polite"></p>
+
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Message preview</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Date submitted</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody data-admin-table-body></tbody>
+              </table>
+            </div>
+
+            <p class="lede admin-empty" data-admin-empty hidden>No inquiries yet.</p>
+          </div>
+        </section>
+
+        <dialog class="admin-dialog" data-inquiry-dialog>
+          <div class="admin-dialog-card">
+            <div class="admin-dialog-head">
+              <div>
+                <span class="eyebrow">Inquiry Detail</span>
+                <h2 data-dialog-name>Inquiry</h2>
+              </div>
+              <button class="button button-secondary button-compact" type="button" data-dialog-close>
+                Close
+              </button>
+            </div>
+            <div class="admin-dialog-meta" data-dialog-meta></div>
+            <div class="admin-dialog-message" data-dialog-message></div>
+          </div>
+        </dialog>
       </main>
       <script src="/script.js"></script>
     </div>

@@ -4,34 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Everest Studio &amp; Media | Admin Login</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta
+      name="description"
+      content="Secure admin access for the Everest Studio & Media inquiry dashboard."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <div class="site-shell">
+    <div class="site-shell admin-surface">
       <main class="page-main admin-auth-shell">
-        <section class="auth-panel">
-          <span class="eyebrow">Admin Access</span>
-          <h1>Login</h1>
-          <p class="lede">Enter your credentials to review incoming inquiries.</p>
-          <p class="form-note admin-subtitle">
-            This dashboard stores every website inquiry so you can review them in one place.
+        <section class="admin-auth-panel">
+          <span class="eyebrow">Everest Admin</span>
+          <h1>Inquiry access</h1>
+          <p class="lede admin-auth-lede">
+            Sign in to review new leads, update inquiry status, and keep outreach organized.
           </p>
-          <form class="auth-form" data-login-form>
-            <label for="username">
-              Username
-              <input id="username" name="username" type="text" required />
+
+          <form class="auth-form" data-admin-login-form>
+            <label for="admin-email">
+              Email
+              <input
+                id="admin-email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                placeholder="contact@evereststudioandmedia.com"
+                required
+              />
             </label>
-            <label for="password">
+            <label for="admin-password">
               Password
-              <input id="password" name="password" type="password" required />
+              <input
+                id="admin-password"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                placeholder="Enter your password"
+                required
+              />
             </label>
-            <button class="button button-primary" type="submit">Login</button>
+            <button class="button button-primary" type="submit">Enter Dashboard</button>
             <p class="form-note" data-login-status aria-live="polite"></p>
           </form>
-          <a class="inline-link admin-back-link" href="index.html">Back to website</a>
+
+          <div class="admin-auth-foot">
+            <span class="form-note">Secure HTTP-only session cookies are used for admin access.</span>
+            <a class="inline-link admin-back-link" href="/index.html">Back to website</a>
+          </div>
         </section>
       </main>
-      <script src="script.js"></script>
+      <script src="/script.js"></script>
     </div>
   </body>
 </html>
