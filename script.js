@@ -33,7 +33,7 @@ async function handleInquiryForm() {
     status.dataset.state = "pending";
 
     try {
-      const response = await fetch("/submit-inquiry", {
+      const response = await fetch("/api/submit-inquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -48,7 +48,7 @@ async function handleInquiryForm() {
       }
 
       form.reset();
-      status.textContent = "Inquiry received. It is saved to your dashboard and you can reply from contact@EverestStudioandMedia.com.";
+      status.textContent = "Inquiry received. We'll be in touch from contact@evereststudioandmedia.com.";
       status.dataset.state = "success";
     } catch (error) {
       status.textContent = error.message;
@@ -81,7 +81,7 @@ async function handleLoginForm() {
     status.dataset.state = "pending";
 
     try {
-      const response = await fetch("/login", {
+      const response = await fetch("/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -95,7 +95,7 @@ async function handleLoginForm() {
         throw new Error(payload.error || "Login failed.");
       }
 
-      window.location.href = "/admin";
+      window.location.href = "/admin.html";
     } catch (error) {
       status.textContent = error.message;
       status.dataset.state = "error";
@@ -153,7 +153,7 @@ async function loadAdminDashboard() {
   }
 
   logoutButton.addEventListener("click", () => {
-    window.location.href = "/logout";
+    window.location.href = "/api/logout";
   });
 
   async function renderInquiries() {
@@ -163,7 +163,7 @@ async function loadAdminDashboard() {
     }
 
     try {
-      const response = await fetch("/admin/inquiries", {
+      const response = await fetch("/api/inquiries", {
         headers: {
           Accept: "application/json"
         }
