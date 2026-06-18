@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Everest Studio & Media — Web Design, Branding & Paid Social</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green-900: #0F2208;
+  --green-800: #1A3A0F;
+  --green-700: #2D5A1B;
+  --green-600: #3D7A25;
+  --green-500: #4E9A30;
+  --green-300: #A0C895;
+  --green-200: #C2DDB8;
+  --green-100: #E4F0DF;
+  --green-50:  #F4F8F2;
+  --white:     #FFFFFF;
+  --gray-900:  #111111;
+  --gray-700:  #333333;
+  --gray-500:  #666666;
+  --gray-300:  #BBBBBB;
+  --gray-200:  #E5E5E5;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+  --radius: 8px;
+  --radius-lg: 16px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.07);
+  --shadow-hover: 0 12px 48px rgba(0,0,0,0.13);
+  --transition: 0.3s ease;
+  --max-w: 1200px;
+  --nav-h: 80px;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--gray-900); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* UTILITY */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+.section { padding: 100px 0; }
+.tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-600); background: var(--green-100); padding: 6px 14px; border-radius: 100px; margin-bottom: 20px; }
+.section-title { font-family: var(--serif); font-size: clamp(30px, 4vw, 48px); font-weight: 700; line-height: 1.15; color: var(--gray-900); margin-bottom: 16px; }
+.section-sub { font-size: 17px; color: var(--gray-500); max-width: 560px; line-height: 1.75; }
+.section-header { margin-bottom: 60px; }
+.section-header.centered { text-align: center; }
+.section-header.centered .section-sub { margin: 0 auto; }
+
+/* BUTTONS */
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: var(--radius); font-family: var(--sans); font-size: 15px; font-weight: 600; letter-spacing: 0.01em; cursor: pointer; border: 2px solid transparent; transition: all var(--transition); text-decoration: none; white-space: nowrap; }
+.btn-primary { background: var(--green-700); color: white; border-color: var(--green-700); }
+.btn-primary:hover { background: var(--green-800); border-color: var(--green-800); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(45,90,27,0.28); }
+.btn-outline { background: transparent; color: white; border-color: rgba(255,255,255,0.55); }
+.btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+.btn-white { background: white; color: var(--green-700); border-color: white; }
+.btn-white:hover { background: var(--green-50); transform: translateY(-2px); }
+.btn-lg { padding: 18px 36px; font-size: 16px; border-radius: 10px; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; background: white; box-shadow: 0 1px 24px rgba(0,0,0,0.08); transition: box-shadow var(--transition); }
+nav.scrolled { box-shadow: 0 2px 32px rgba(0,0,0,0.12); }
+.nav-inner { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.nav-logo { display: flex; align-items: center; text-decoration: none; flex-shrink: 0; }
+.nav-logo svg { height: 52px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 4px; list-style: none; margin: 0 auto; }
+.nav-links a { font-size: 14px; font-weight: 500; padding: 8px 15px; border-radius: var(--radius); text-decoration: none; transition: color var(--transition), background var(--transition); letter-spacing: 0.01em; color: var(--gray-700); }
+.nav-links a:hover, .nav-links a.active { color: var(--green-700); background: var(--green-50); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+.nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--gray-700); border-radius: 2px; }
+.nav-mobile { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: white; box-shadow: 0 20px 48px rgba(0,0,0,0.12); z-index: 999; padding: 24px 40px 32px; }
+.nav-mobile.open { display: block; }
+.nav-mobile ul { list-style: none; }
+.nav-mobile ul li { border-bottom: 1px solid var(--gray-200); }
+.nav-mobile ul a { display: block; padding: 16px 0; font-size: 16px; font-weight: 500; color: var(--gray-700); text-decoration: none; }
+.nav-mobile .btn { margin-top: 20px; width: 100%; justify-content: center; }
+
+/* PAGE TABS */
+.page { display: none; }
+.page.active { display: block; }
+
+/* HERO */
+#hero { min-height: 100vh; background: linear-gradient(145deg, var(--green-900) 0%, var(--green-800) 45%, #2D5A1B 100%); display: flex; align-items: center; position: relative; overflow: hidden; padding-top: var(--nav-h); }
+.hero-bg { position: absolute; inset: 0; opacity: 0.04; background-image: radial-gradient(circle at 20% 50%, #fff 1px, transparent 1px), radial-gradient(circle at 80% 20%, #fff 1px, transparent 1px); background-size: 64px 64px, 88px 88px; }
+.hero-glow { position: absolute; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, rgba(78,154,48,0.25) 0%, transparent 70%); top: -150px; right: -150px; pointer-events: none; }
+.hero-glow-2 { position: absolute; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(45,90,27,0.4) 0%, transparent 70%); bottom: -100px; left: 30%; pointer-events: none; }
+.hero-split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; width: 100%; min-height: calc(100vh - var(--nav-h)); padding: 64px 0 80px; }
+.hero-content { position: relative; z-index: 1; }
+.hero-visual { position: relative; z-index: 1; }
+.mock-browser { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.13); border-radius: 14px; overflow: hidden; box-shadow: 0 48px 96px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,255,255,0.05); }
+.mock-bar { background: rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 16px; display: flex; align-items: center; gap: 10px; }
+.mock-dots { display: flex; gap: 6px; flex-shrink: 0; }
+.mock-dots span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+.mock-dots span:nth-child(1) { background: rgba(255,100,100,0.5); }
+.mock-dots span:nth-child(2) { background: rgba(255,200,50,0.5); }
+.mock-dots span:nth-child(3) { background: rgba(80,200,80,0.5); }
+.mock-url-bar { flex: 1; background: rgba(255,255,255,0.07); border-radius: 5px; padding: 5px 12px; font-size: 11px; color: rgba(255,255,255,0.4); text-align: center; }
+.mock-body { padding: 18px; }
+.mock-nav-strip { height: 32px; background: rgba(255,255,255,0.05); border-radius: 6px; margin-bottom: 14px; display: flex; align-items: center; padding: 0 12px; gap: 8px; }
+.mock-nav-dot { width: 28px; height: 6px; background: rgba(255,255,255,0.15); border-radius: 3px; }
+.mock-nav-dot.active { background: rgba(255,255,255,0.35); width: 36px; }
+.mock-nav-cta { margin-left: auto; width: 52px; height: 18px; background: rgba(255,255,255,0.2); border-radius: 4px; }
+.mock-hero-block { height: 90px; background: linear-gradient(90deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.06) 100%); border-radius: 8px; margin-bottom: 14px; display: flex; align-items: flex-end; padding: 12px; gap: 8px; }
+.mock-hero-btn { height: 20px; border-radius: 4px; background: white; opacity: 0.5; }
+.mock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+.mock-card { height: 52px; background: rgba(255,255,255,0.07); border-radius: 6px; border: 1px solid rgba(255,255,255,0.06); }
+.mock-text-lines { display: flex; flex-direction: column; gap: 7px; }
+.mock-line { height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; }
+.ml-full { width: 100%; } .ml-3q { width: 75%; } .ml-half { width: 50%; }
+.hero-badge { position: absolute; border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; z-index: 2; animation: floatBadge 4s ease-in-out infinite; }
+.hero-badge-1 { background: white; box-shadow: 0 16px 48px rgba(0,0,0,0.22); bottom: -16px; right: -16px; animation-delay: 0s; }
+.hero-badge-2 { background: white; box-shadow: 0 12px 36px rgba(0,0,0,0.22); top: -16px; left: -16px; animation-delay: 2s; }
+@keyframes floatBadge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.badge-arrow { font-size: 20px; font-weight: 700; color: var(--green-500); line-height: 1; }
+.badge-val { font-family: var(--serif); font-size: 18px; font-weight: 700; color: var(--green-700); line-height: 1; }
+.badge-lbl { font-size: 11px; color: var(--gray-500); margin-top: 3px; }
+.hero-badge-2 .badge-val { font-size: 22px; }
+.hero-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--green-300); margin-bottom: 28px; }
+.hero-tag::before { content: ''; display: block; width: 28px; height: 1.5px; background: var(--green-300); }
+.hero-title { font-family: var(--serif); font-size: clamp(44px, 6.5vw, 80px); font-weight: 700; color: white; line-height: 1.08; margin-bottom: 28px; letter-spacing: -0.02em; }
+.hero-title em { font-style: italic; color: var(--green-300); }
+.hero-sub { font-size: 18px; color: rgba(255,255,255,0.65); max-width: 540px; line-height: 1.8; margin-bottom: 44px; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.hero-scroll { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 1; }
+.hero-scroll span { display: block; width: 1px; height: 48px; background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+@keyframes scrollPulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+/* STATS */
+#stats { background: var(--green-50); padding: 0; border-top: 1px solid var(--green-100); border-bottom: 1px solid var(--green-100); }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+.stat-item { text-align: center; padding: 40px 24px; border-right: 1px solid var(--green-200); transition: background var(--transition); }
+.stat-item:last-child { border-right: none; }
+.stat-item:hover { background: var(--green-100); }
+.stat-number { font-family: var(--serif); font-size: 46px; font-weight: 700; color: var(--green-700); line-height: 1; margin-bottom: 8px; }
+.stat-label { font-size: 12px; font-weight: 600; color: var(--gray-500); letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* SERVICE CARDS */
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.service-card { background: var(--white); border: 1px solid var(--green-100); border-radius: var(--radius-lg); padding: 40px 36px; position: relative; overflow: hidden; transition: all var(--transition); cursor: default; }
+.service-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green-700), var(--green-500)); transform: scaleX(0); transform-origin: left; transition: transform var(--transition); }
+.service-card:hover { border-color: var(--green-200); box-shadow: var(--shadow-hover); transform: translateY(-5px); }
+.service-card:hover::after { transform: scaleX(1); }
+.service-icon { width: 52px; height: 52px; background: var(--green-100); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; color: var(--green-700); }
+.service-card h3 { font-family: var(--serif); font-size: 22px; font-weight: 700; color: var(--gray-900); margin-bottom: 12px; }
+.service-card p { font-size: 15px; color: var(--gray-500); line-height: 1.75; margin-bottom: 28px; }
+.service-link { font-size: 14px; font-weight: 600; color: var(--green-700); text-decoration: none; cursor: pointer; }
+.service-link:hover { text-decoration: underline; }
+
+/* PROCESS */
+.process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; margin-top: 16px; }
+.process-steps::before { content: ''; position: absolute; top: 36px; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, var(--green-200), var(--green-300), var(--green-200)); }
+.process-step { text-align: center; padding: 0 20px; position: relative; }
+.step-num { font-family: var(--serif); font-size: 13px; font-weight: 600; color: white; background: var(--green-700); width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; position: relative; z-index: 1; }
+.process-step h3 { font-family: var(--serif); font-size: 19px; color: var(--green-800); margin-bottom: 10px; }
+.process-step p { font-size: 14px; color: var(--gray-500); line-height: 1.7; }
+
+/* WHY */
+#why { background: var(--green-800); }
+.why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.why-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); border-radius: var(--radius-lg); padding: 40px 32px; transition: background var(--transition); }
+.why-card:hover { background: rgba(255,255,255,0.09); }
+.why-num { font-family: var(--serif); font-size: 52px; font-weight: 700; color: rgba(255,255,255,0.07); line-height: 1; margin-bottom: 16px; }
+.why-card h3 { font-family: var(--serif); font-size: 21px; color: white; margin-bottom: 12px; }
+.why-card p { font-size: 15px; color: rgba(255,255,255,0.58); line-height: 1.75; }
+
+/* TESTIMONIALS */
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.testimonial-card { background: white; border-radius: var(--radius-lg); padding: 36px 32px; box-shadow: var(--shadow); border: 1px solid var(--green-100); position: relative; }
+.testimonial-card::before { content: '\201C'; position: absolute; top: 16px; right: 28px; font-family: var(--serif); font-size: 88px; color: var(--green-100); line-height: 1; }
+.stars { color: var(--green-600); font-size: 14px; margin-bottom: 18px; letter-spacing: 2px; }
+.testimonial-text { font-size: 15px; color: var(--gray-700); line-height: 1.8; margin-bottom: 28px; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 14px; }
+.author-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, var(--green-600), var(--green-800)); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 16px; font-weight: 700; color: white; flex-shrink: 0; }
+.author-name { font-size: 15px; font-weight: 600; color: var(--gray-900); }
+.author-role { font-size: 13px; color: var(--gray-500); margin-top: 2px; }
+
+/* CTA */
+#cta-section { background: linear-gradient(135deg, var(--green-700) 0%, var(--green-900) 100%); padding: 120px 0; text-align: center; position: relative; overflow: hidden; }
+#cta-section::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 25% 50%, rgba(255,255,255,0.04) 0%, transparent 55%); }
+.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+footer { background: var(--green-900); color: rgba(255,255,255,0.55); padding: 72px 0 36px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 56px; }
+.footer-logo svg { height: 36px; margin-bottom: 18px; opacity: 0.85; }
+.footer-logo svg path, .footer-logo svg text { fill: white; }
+.footer-logo svg path[stroke] { stroke: white; }
+.footer-brand p { font-size: 14px; line-height: 1.75; max-width: 270px; }
+.footer-col h4 { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.85); margin-bottom: 18px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul a { font-size: 14px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color var(--transition); cursor: pointer; }
+.footer-col ul a:hover { color: rgba(255,255,255,0.9); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 28px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
+
+/* PAGE HERO */
+.page-hero { background: linear-gradient(145deg, var(--green-900) 0%, var(--green-800) 100%); padding: calc(var(--nav-h) + 80px) 0 88px; }
+.page-hero .hero-tag { color: var(--green-300); }
+.page-hero h1 { font-family: var(--serif); font-size: clamp(36px, 5vw, 62px); font-weight: 700; color: white; line-height: 1.12; margin: 14px 0 20px; }
+.page-hero p { font-size: 18px; color: rgba(255,255,255,0.62); max-width: 560px; line-height: 1.75; }
+
+/* SERVICES PAGE */
+.service-block { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; padding: 88px 0; border-bottom: 1px solid var(--gray-200); }
+.service-block:last-child { border: none; }
+.service-block.reverse .service-block-visual { order: 1; }
+.service-block.reverse .service-block-content { order: 0; }
+.service-block-visual { background: linear-gradient(135deg, var(--green-50) 0%, var(--green-100) 100%); border-radius: var(--radius-lg); aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; border: 1px solid var(--green-200); position: relative; overflow: hidden; }
+.service-visual-inner { position: relative; z-index: 1; text-align: center; padding: 32px; }
+.service-visual-inner h4 { font-family: var(--serif); font-size: 20px; color: var(--green-800); margin-bottom: 8px; }
+.service-visual-inner p { font-size: 14px; color: var(--green-600); }
+.service-block-content h2 { font-family: var(--serif); font-size: clamp(28px, 3vw, 38px); font-weight: 700; color: var(--gray-900); margin: 12px 0 18px; }
+.service-block-content > p { font-size: 16px; color: var(--gray-500); line-height: 1.8; margin-bottom: 32px; }
+.feature-list { list-style: none; margin-bottom: 36px; }
+.feature-list li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--gray-700); margin-bottom: 12px; line-height: 1.5; }
+.feature-check { width: 20px; height: 20px; flex-shrink: 0; background: var(--green-700); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.feature-check svg { width: 11px; height: 11px; }
+
+/* WORK PAGE */
+.results-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+.result-card { background: white; border: 1px solid var(--green-100); border-radius: var(--radius-lg); overflow: hidden; transition: all var(--transition); }
+.result-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+.result-visual { background: linear-gradient(135deg, var(--green-800), var(--green-600)); padding: 32px 36px; display: flex; align-items: center; justify-content: space-between; position: relative; overflow: hidden; min-height: 130px; }
+.result-visual::before { content: ''; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.07); }
+.result-category { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 100px; position: relative; z-index: 1; }
+.result-metrics { display: flex; gap: 28px; position: relative; z-index: 1; }
+.result-metric { text-align: right; }
+.result-metric-num { font-family: var(--serif); font-size: 30px; font-weight: 700; color: white; line-height: 1; }
+.result-metric-label { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 4px; }
+.result-body { padding: 32px 36px; }
+.result-body h3 { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
+.result-body .industry { font-size: 13px; color: var(--green-600); font-weight: 500; margin-bottom: 14px; display: block; }
+.result-body p { font-size: 14px; color: var(--gray-500); line-height: 1.75; }
+.services-used { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.service-chip { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; background: var(--green-50); color: var(--green-700); padding: 5px 12px; border-radius: 100px; border: 1px solid var(--green-100); }
+
+/* ABOUT PAGE */
+.about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.about-lead { font-family: var(--serif); font-size: clamp(18px, 2vw, 24px); color: var(--gray-700); line-height: 1.65; border-left: 3px solid var(--green-600); padding-left: 28px; margin-bottom: 28px; }
+.about-body { font-size: 16px; color: var(--gray-500); line-height: 1.85; }
+.about-body p { margin-bottom: 20px; }
+.about-visual { background: linear-gradient(145deg, var(--green-800), var(--green-600)); border-radius: var(--radius-lg); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.about-visual-content { text-align: center; color: white; position: relative; z-index: 1; padding: 40px; }
+.about-visual-content .big-num { font-family: var(--serif); font-size: 72px; font-weight: 700; opacity: 0.15; line-height: 1; display: block; margin-bottom: 16px; }
+.about-visual-content h3 { font-family: var(--serif); font-size: 28px; margin-bottom: 12px; opacity: 0.9; }
+.about-visual-content p { font-size: 15px; opacity: 0.65; line-height: 1.7; }
+.values-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.value-card { background: var(--green-50); border-radius: var(--radius-lg); padding: 36px 32px; border: 1px solid var(--green-100); transition: all var(--transition); }
+.value-card:hover { border-color: var(--green-200); box-shadow: var(--shadow); }
+.value-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+.value-card h3 { font-family: var(--serif); font-size: 20px; color: var(--green-800); margin-bottom: 10px; }
+.value-card p { font-size: 15px; color: var(--gray-500); line-height: 1.7; }
+
+/* CONTACT PAGE */
+.contact-wrap { display: grid; grid-template-columns: 1fr 1.7fr; gap: 72px; align-items: start; }
+.contact-info h2 { font-family: var(--serif); font-size: 34px; margin-bottom: 16px; color: var(--gray-900); }
+.contact-info > p { font-size: 16px; color: var(--gray-500); line-height: 1.8; margin-bottom: 40px; }
+.contact-detail { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
+.contact-icon { width: 44px; height: 44px; background: var(--green-100); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--green-700); flex-shrink: 0; }
+.contact-detail h4 { font-size: 14px; font-weight: 600; color: var(--gray-900); margin-bottom: 4px; }
+.contact-detail p, .contact-detail a { font-size: 14px; color: var(--gray-500); text-decoration: none; }
+.contact-form { background: white; border: 1px solid var(--green-100); border-radius: var(--radius-lg); padding: 52px; box-shadow: var(--shadow); }
+.form-title { font-family: var(--serif); font-size: 26px; color: var(--gray-900); margin-bottom: 8px; }
+.form-sub { font-size: 15px; color: var(--gray-500); margin-bottom: 36px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 8px; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 13px 16px; border: 1.5px solid var(--gray-200); border-radius: var(--radius); font-family: var(--sans); font-size: 15px; color: var(--gray-900); background: white; outline: none; transition: border-color var(--transition); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--green-600); box-shadow: 0 0 0 3px rgba(45,90,27,0.08); }
+.form-group textarea { resize: vertical; min-height: 130px; }
+.form-submit { width: 100%; justify-content: center; margin-top: 8px; }
+
+/* ANIMATIONS */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up-delay-1 { transition-delay: 0.1s; }
+.fade-up-delay-2 { transition-delay: 0.2s; }
+.fade-up-delay-3 { transition-delay: 0.3s; }
+
+@media (max-width: 1024px) {
+  .hero-split { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { display: none; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .service-block { grid-template-columns: 1fr; gap: 48px; }
+  .about-split { grid-template-columns: 1fr; gap: 48px; }
+  .contact-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .process-steps { grid-template-columns: repeat(2, 1fr); }
+  .process-steps::before { display: none; }
+}
+@media (max-width: 768px) {
+  .container { padding: 0 20px; }
+  .section { padding: 64px 0; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-grid, .why-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .cta-actions { flex-direction: column; align-items: center; }
+  .contact-form { padding: 32px 24px; }
+  .process-steps { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+}
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" fill="none">
+          <path d="M70 320 L178 82 L218 128 L292 36 L450 320 Z" fill="#2D5A1B"/>
+          <path d="M178 82 L163 118 L170 108 L166 126 L178 114 L190 126 L186 108 L193 118 Z" fill="white"/>
+          <path d="M292 36 L274 86 L282 72 L277 96 L292 82 L307 96 L302 72 L310 86 Z" fill="white"/>
+          <path d="M28 334 Q260 368 492 334" stroke="#2D5A1B" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M36 350 Q260 384 484 350" stroke="#2D5A1B" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+          <text x="260" y="393" text-anchor="middle" font-family="Georgia, serif" font-size="82" font-weight="bold" fill="#2D5A1B" letter-spacing="6">EVEREST</text>
+          <text x="267" y="416" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#3D6B25" letter-spacing="13">STUDIO &amp; MEDIA</text>
+        </svg>
+      </a>
+      <ul class="nav-links">
+        <li><a onclick="showPage('home')" id="nav-home" class="active" style="cursor:pointer;">Home</a></li>
+        <li><a onclick="showPage('services')" id="nav-services" style="cursor:pointer;">Services</a></li>
+        <li><a onclick="showPage('work')" id="nav-work" style="cursor:pointer;">Our Work</a></li>
+        <li><a onclick="showPage('about')" id="nav-about" style="cursor:pointer;">About</a></li>
+        <li><a onclick="showPage('contact')" id="nav-contact" style="cursor:pointer;">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a onclick="showPage('contact')" class="btn btn-primary" style="cursor:pointer;">Get Started</a>
+      </div>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-mobile" id="mobile-menu">
+    <ul>
+      <li><a onclick="showPage('home');closeMobile();" style="cursor:pointer;">Home</a></li>
+      <li><a onclick="showPage('services');closeMobile();" style="cursor:pointer;">Services</a></li>
+      <li><a onclick="showPage('work');closeMobile();" style="cursor:pointer;">Our Work</a></li>
+      <li><a onclick="showPage('about');closeMobile();" style="cursor:pointer;">About</a></li>
+      <li><a onclick="showPage('contact');closeMobile();" style="cursor:pointer;">Contact</a></li>
+    </ul>
+    <a onclick="showPage('contact');closeMobile();" class="btn btn-primary" style="cursor:pointer;">Get Started &rarr;</a>
+  </div>
+
+  <!-- ═══ HOME PAGE ═══ -->
+  <div id="page-home" class="page active">
+
+    <section id="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-glow"></div>
+      <div class="hero-glow-2"></div>
+      <div class="container">
+        <div class="hero-split">
+          <div class="hero-content">
+            <div class="hero-tag">Full-Service Marketing Studio</div>
+            <h1 class="hero-title">Your Brand,<br><em>Elevated.</em></h1>
+            <p class="hero-sub">We build the digital presence your brand deserves — precision web design, strategic branding, and paid social campaigns engineered for real, measurable growth.</p>
+            <div class="hero-actions">
+              <a onclick="showPage('contact')" class="btn btn-white btn-lg" style="cursor:pointer;">Start With Everest &rarr;</a>
+              <a onclick="showPage('services')" class="btn btn-outline btn-lg" style="cursor:pointer;">Explore Services</a>
+            </div>
+          </div>
+          <div class="hero-visual">
+            <div class="mock-browser">
+              <div class="mock-bar">
+                <div class="mock-dots"><span></span><span></span><span></span></div>
+                <div class="mock-url-bar">yourclient.com</div>
+              </div>
+              <div class="mock-body">
+                <div class="mock-nav-strip">
+                  <div class="mock-nav-dot active"></div>
+                  <div class="mock-nav-dot"></div>
+                  <div class="mock-nav-dot"></div>
+                  <div class="mock-nav-dot"></div>
+                  <div class="mock-nav-cta"></div>
+                </div>
+                <div class="mock-hero-block">
+                  <div class="mock-hero-btn" style="width:80px;"></div>
+                  <div class="mock-hero-btn" style="width:60px; opacity:0.25;"></div>
+                </div>
+                <div class="mock-grid">
+                  <div class="mock-card"></div>
+                  <div class="mock-card"></div>
+                  <div class="mock-card"></div>
+                </div>
+                <div class="mock-text-lines">
+                  <div class="mock-line ml-full"></div>
+                  <div class="mock-line ml-3q"></div>
+                  <div class="mock-line ml-half"></div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-badge hero-badge-1">
+              <div class="badge-arrow">&#8593;</div>
+              <div><div class="badge-val">40%</div><div class="badge-lbl">Lead Growth</div></div>
+            </div>
+            <div class="hero-badge hero-badge-2">
+              <div><div class="badge-val">3.2&times;</div><div class="badge-lbl">Avg. ROAS</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scroll"><span></span></div>
+    </section>
+
+    <section id="stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Brands Launched</div></div>
+          <div class="stat-item"><div class="stat-number">3.2×</div><div class="stat-label">Average Ad ROI</div></div>
+          <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Custom Builds</div></div>
+          <div class="stat-item"><div class="stat-number">48hr</div><div class="stat-label">Avg. Response Time</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services-home">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="tag">What We Do</span>
+          <h2 class="section-title">Three services.<br>One focused studio.</h2>
+          <p class="section-sub">We keep our offering tight so our execution is exceptional. Every service we provide is built to drive one outcome: growth.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card fade-up">
+            <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+            <h3>Web Design &amp; Development</h3>
+            <p>High-performing websites designed to convert visitors into clients. Built for speed, clarity, and your brand's unique voice.</p>
+            <a onclick="showPage('services')" class="service-link">See what's included &rarr;</a>
+          </div>
+          <div class="service-card fade-up fade-up-delay-1">
+            <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+            <h3>Brand Identity</h3>
+            <p>Strategic visuals, typography, and brand standards that make your business instantly recognizable.</p>
+            <a onclick="showPage('services')" class="service-link">See what's included &rarr;</a>
+          </div>
+          <div class="service-card fade-up fade-up-delay-2">
+            <div class="service-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <h3>Paid Social Advertising</h3>
+            <p>Data-driven ad creative and targeting across Meta, Instagram, and TikTok that puts your brand in front of the right people at the right time.</p>
+            <a onclick="showPage('services')" class="service-link">See what's included &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--green-50); border-top: 1px solid var(--green-100); border-bottom: 1px solid var(--green-100);">
+      <div class="container">
+        <div class="section-header centered fade-up">
+          <span class="tag">How We Work</span>
+          <h2 class="section-title">From first call to<br>full momentum.</h2>
+          <p class="section-sub">A clear, collaborative process so you always know what's happening and what's coming next.</p>
+        </div>
+        <div class="process-steps fade-up">
+          <div class="process-step"><div class="step-num">01</div><h3>Discovery</h3><p>We learn your brand, goals, competitors, and target audience before a single pixel gets touched.</p></div>
+          <div class="process-step"><div class="step-num">02</div><h3>Strategy</h3><p>We map your digital playbook from positioning, messaging, channels, and the metrics that matter.</p></div>
+          <div class="process-step"><div class="step-num">03</div><h3>Execution</h3><p>Design, build, launch. Tight timelines, clean handoffs, and zero compromise on quality.</p></div>
+          <div class="process-step"><div class="step-num">04</div><h3>Growth</h3><p>We monitor performance, optimize continuously, and scale what's working month on month.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="tag" style="background: rgba(255,255,255,0.1); color: var(--green-300);">The Everest Advantage</span>
+          <h2 class="section-title" style="color: white;">More than an agency.<br>A strategic partner.</h2>
+          <p class="section-sub" style="color: rgba(255,255,255,0.6);">We believe that results are driven by a comprehensive approach.</p>
+        </div>
+        <div class="why-grid">
+          <div class="why-card fade-up"><div class="why-num">01</div><h3>Integrated Thinking</h3><p>Your website, brand, and ads are built as one cohesive system, not separate projects handed off to separate teams with no communication between them.</p></div>
+          <div class="why-card fade-up fade-up-delay-1"><div class="why-num">02</div><h3>Results, Not Deliverables</h3><p>We measure success in real impact. Page counts and impression numbers are more than KPI's. Our incentives are aligned with yours from day one.</p></div>
+          <div class="why-card fade-up fade-up-delay-2"><div class="why-num">03</div><h3>Built for Your Category</h3><p>We go deep on your market, your competitors, and what actually converts your specific audience — not generic practices copy-pasted from another industry.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="background: var(--green-50); border-top: 1px solid var(--green-100);">
+      <div class="container">
+        <div class="section-header centered fade-up">
+          <span class="tag">Client Stories</span>
+          <h2 class="section-title">The proof is in the growth.</h2>
+          <p class="section-sub">Here's what clients say after working with Everest.</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card fade-up">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"Everest rebuilt our website and launched our Meta ads within three weeks. We saw a 40% increase in inbound leads in the first month alone."</p>
+            <div class="testimonial-author"><div class="author-avatar">JR</div><div><div class="author-name">James R.</div><div class="author-role">Founder, Ridgeline Consulting</div></div></div>
+          </div>
+          <div class="testimonial-card fade-up fade-up-delay-1">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"Our old brand felt generic. Everest gave us a visual identity that finally matched the caliber of our work. Clients notice immediately — and mention it."</p>
+            <div class="testimonial-author"><div class="author-avatar">SK</div><div><div class="author-name">Sofia K.</div><div class="author-role">CEO, Kova Creative Co.</div></div></div>
+          </div>
+          <div class="testimonial-card fade-up fade-up-delay-2">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="testimonial-text">"The paid social campaign Everest ran for our product launch drove 3.8× ROAS on a tight budget. Could not have asked for a better partner or outcome."</p>
+            <div class="testimonial-author"><div class="author-avatar">MT</div><div><div class="author-name">Marcus T.</div><div class="author-role">Marketing Director, Apex Supply Co.</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta-section">
+      <div class="container" style="position:relative;z-index:1;">
+        <h2 class="section-title" style="color:white;">Ready to reach your peak?</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,0.65); margin: 16px auto 44px;">Let's talk about where your brand is today and where you want it to go.</p>
+        <div class="cta-actions">
+          <a onclick="showPage('contact')" class="btn btn-white btn-lg" style="cursor:pointer;">Schedule a Free Call &rarr;</a>
+          <a onclick="showPage('services')" class="btn btn-outline btn-lg" style="cursor:pointer;">View Services</a>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /page-home -->
+
+  <!-- ═══ SERVICES PAGE ═══ -->
+  <div id="page-services" class="page">
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-tag">What We Offer</div>
+        <h1>Precision services.<br>Measurable outcomes.</h1>
+        <p>Three focused disciplines — each one a standalone offering, all of them more powerful when combined.</p>
+      </div>
+    </section>
+    <div style="background: white;">
+      <div class="container">
+        <div class="service-block" id="web">
+          <div class="service-block-visual fade-up">
+            <div class="service-visual-inner">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="margin-bottom:16px; opacity:0.7;">
+                <rect x="4" y="6" width="56" height="38" rx="4" stroke="#2D5A1B" stroke-width="2.5" fill="none"/>
+                <path d="M4 16h56" stroke="#2D5A1B" stroke-width="2.5"/>
+                <circle cx="13" cy="11" r="2" fill="#2D5A1B" opacity="0.5"/>
+                <circle cx="20" cy="11" r="2" fill="#2D5A1B" opacity="0.5"/>
+                <circle cx="27" cy="11" r="2" fill="#2D5A1B" opacity="0.5"/>
+                <rect x="12" y="22" width="18" height="3" rx="1.5" fill="#2D5A1B" opacity="0.3"/>
+                <rect x="12" y="28" width="28" height="3" rx="1.5" fill="#2D5A1B" opacity="0.2"/>
+                <rect x="12" y="34" width="22" height="3" rx="1.5" fill="#2D5A1B" opacity="0.2"/>
+                <path d="M32 44v12" stroke="#2D5A1B" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M20 56h24" stroke="#2D5A1B" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+              <h4>Custom Web Design</h4>
+              <p>Built from scratch, built to convert.</p>
+            </div>
+          </div>
+          <div class="service-block-content fade-up fade-up-delay-1">
+            <span class="tag">Web Design &amp; Development</span>
+            <h2>Websites that work as hard as you do.</h2>
+            <p>We design and build custom websites that are fast, beautiful, and strategically engineered to turn visitors into paying clients. No templates, no shortcuts — every element is intentional.</p>
+            <ul class="feature-list">
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Custom UI/UX design tailored to your brand and audience</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Mobile-first, fully responsive across all devices</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Conversion-optimized layout, copy structure, and CTAs</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Performance optimized — sub-3s load times</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>On-page SEO foundation built in from the start</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>CMS integration for easy self-managed content updates</li>
+            </ul>
+            <a onclick="showPage('contact')" class="btn btn-primary" style="cursor:pointer;">Start Your Project &rarr;</a>
+          </div>
+        </div>
+
+        <div class="service-block reverse" id="brand">
+          <div class="service-block-visual fade-up">
+            <div class="service-visual-inner">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="margin-bottom:16px; opacity:0.7;">
+                <circle cx="32" cy="28" r="16" stroke="#2D5A1B" stroke-width="2.5" fill="none"/>
+                <circle cx="32" cy="28" r="8" stroke="#2D5A1B" stroke-width="2.5" fill="none" opacity="0.5"/>
+                <circle cx="32" cy="28" r="3" fill="#2D5A1B"/>
+                <path d="M32 12V8M32 48v-4M16 28H12M52 28h-4" stroke="#2D5A1B" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+              <h4>Brand Identity System</h4>
+              <p>Strategy-first visual identity.</p>
+            </div>
+          </div>
+          <div class="service-block-content fade-up fade-up-delay-1">
+            <span class="tag">Brand Identity</span>
+            <h2>A brand that commands attention.</h2>
+            <p>We build visual identities from the ground up — grounded in strategy, built for longevity. Your brand should communicate who you are before you say a word. We make sure it does.</p>
+            <ul class="feature-list">
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Brand strategy and positioning workshop</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Logo design and full logo suite (primary, secondary, mark)</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Color palette, typography system, and visual language</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Brand guidelines document for consistent application</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Social media kit and branded templates</li>
+            </ul>
+            <a onclick="showPage('contact')" class="btn btn-primary" style="cursor:pointer;">Build Your Brand &rarr;</a>
+          </div>
+        </div>
+
+        <div class="service-block" id="social">
+          <div class="service-block-visual fade-up">
+            <div class="service-visual-inner">
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" style="margin-bottom:16px; opacity:0.7;">
+                <path d="M8 44l12-14 10 8 12-18 14 10" stroke="#2D5A1B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                <circle cx="8" cy="44" r="3" fill="#2D5A1B"/>
+                <circle cx="20" cy="30" r="3" fill="#2D5A1B" opacity="0.6"/>
+                <circle cx="30" cy="38" r="3" fill="#2D5A1B" opacity="0.6"/>
+                <circle cx="42" cy="20" r="3" fill="#2D5A1B"/>
+                <circle cx="56" cy="30" r="3" fill="#2D5A1B" opacity="0.6"/>
+              </svg>
+              <h4>Paid Social Advertising</h4>
+              <p>Data-driven. Conversion-focused.</p>
+            </div>
+          </div>
+          <div class="service-block-content fade-up fade-up-delay-1">
+            <span class="tag">Paid Social Advertising</span>
+            <h2>Ad spend that actually works.</h2>
+            <p>We manage paid social campaigns on Meta, Instagram, and TikTok that are built around your business goals — not vanity metrics. Every dollar is tracked, every creative is tested, and every campaign is optimized for return.</p>
+            <ul class="feature-list">
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Audience research and targeting strategy</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ad creative concept, copywriting, and design</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Campaign setup, pixel configuration, and tracking</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>A/B testing across creatives, audiences, and copy</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Weekly performance reports with plain-English insights</li>
+              <li><span class="feature-check"><svg viewBox="0 0 11 11" fill="none"><path d="M1.5 5.5l3 3 5-5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Continuous optimization and budget management</li>
+            </ul>
+            <a onclick="showPage('contact')" class="btn btn-primary" style="cursor:pointer;">Launch Your Campaign &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="cta-section">
+      <div class="container" style="position:relative;z-index:1;">
+        <h2 class="section-title" style="color:white;">Not sure where to start?</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,0.65); margin: 16px auto 44px;">Book a free 30-minute strategy call. We'll listen, ask the right questions, and tell you exactly what we'd recommend — no pressure, no pitch deck.</p>
+        <div class="cta-actions">
+          <a onclick="showPage('contact')" class="btn btn-white btn-lg" style="cursor:pointer;">Schedule a Free Call &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </div><!-- /page-services -->
+
+  <!-- ═══ WORK PAGE ═══ -->
+  <div id="page-work" class="page">
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-tag">Results</div>
+        <h1>Work that speaks<br>for itself.</h1>
+        <p>Real projects, real outcomes. Here's a look at what we've built and the results it drove.</p>
+      </div>
+    </section>
+    <section class="section" style="background: white;">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="tag">Case Studies</span>
+          <h2 class="section-title">Built to perform.</h2>
+          <p class="section-sub">Every project is a partnership. Here's what happens when strategy meets execution.</p>
+        </div>
+        <div class="results-grid">
+          <div class="result-card fade-up">
+            <div class="result-visual">
+              <span class="result-category">Web + Paid Social</span>
+              <div class="result-metrics">
+                <div class="result-metric"><div class="result-metric-num">+40%</div><div class="result-metric-label">Lead Volume</div></div>
+                <div class="result-metric"><div class="result-metric-num">3.8×</div><div class="result-metric-label">ROAS</div></div>
+              </div>
+            </div>
+            <div class="result-body">
+              <h3>Ridgeline Consulting</h3>
+              <span class="industry">B2B Consulting</span>
+              <p>A complete digital overhaul — new site, new brand, and a full Meta ad funnel — delivered in under four weeks. Inbound leads increased 40% within the first 30 days of launch.</p>
+              <div class="services-used">
+                <span class="service-chip">Web Design</span>
+                <span class="service-chip">Paid Social</span>
+              </div>
+            </div>
+          </div>
+          <div class="result-card fade-up fade-up-delay-1">
+            <div class="result-visual">
+              <span class="result-category">Brand Identity</span>
+              <div class="result-metrics">
+                <div class="result-metric"><div class="result-metric-num">2×</div><div class="result-metric-label">Proposal Win Rate</div></div>
+              </div>
+            </div>
+            <div class="result-body">
+              <h3>Kova Creative Co.</h3>
+              <span class="industry">Creative Agency</span>
+              <p>A brand identity that finally matched the quality of their work. New logo, color system, typography, and a full brand guidelines doc. Clients started commenting on it immediately.</p>
+              <div class="services-used">
+                <span class="service-chip">Brand Identity</span>
+              </div>
+            </div>
+          </div>
+          <div class="result-card fade-up fade-up-delay-2">
+            <div class="result-visual" style="background: linear-gradient(135deg, #1A3A0F, #4E9A30);">
+              <span class="result-category">Paid Social</span>
+              <div class="result-metrics">
+                <div class="result-metric"><div class="result-metric-num">3.2×</div><div class="result-metric-label">ROAS</div></div>
+                <div class="result-metric"><div class="result-metric-num">-22%</div><div class="result-metric-label">CPA</div></div>
+              </div>
+            </div>
+            <div class="result-body">
+              <h3>Apex Supply Co.</h3>
+              <span class="industry">E-Commerce</span>
+              <p>A product launch campaign across Meta and TikTok. Tight budget, strong creative, and relentless A/B testing delivered a 3.2× ROAS and reduced cost-per-acquisition by 22%.</p>
+              <div class="services-used">
+                <span class="service-chip">Paid Social</span>
+              </div>
+            </div>
+          </div>
+          <div class="result-card fade-up fade-up-delay-3">
+            <div class="result-visual" style="background: linear-gradient(135deg, #0F2208, #2D5A1B);">
+              <span class="result-category">Full Service</span>
+              <div class="result-metrics">
+                <div class="result-metric"><div class="result-metric-num">+55%</div><div class="result-metric-label">Organic Traffic</div></div>
+              </div>
+            </div>
+            <div class="result-body">
+              <h3>Northshore Medical Group</h3>
+              <span class="industry">Healthcare</span>
+              <p>End-to-end digital presence — brand identity, HIPAA-compliant web build, and a local paid social campaign. Organic traffic grew 55% in the first quarter post-launch.</p>
+              <div class="services-used">
+                <span class="service-chip">Web Design</span>
+                <span class="service-chip">Brand Identity</span>
+                <span class="service-chip">Paid Social</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="cta-section">
+      <div class="container" style="position:relative;z-index:1;">
+        <h2 class="section-title" style="color:white;">Ready to be next?</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,0.65); margin: 16px auto 44px;">Let's build something worth adding to this page.</p>
+        <div class="cta-actions">
+          <a onclick="showPage('contact')" class="btn btn-white btn-lg" style="cursor:pointer;">Start a Project &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </div><!-- /page-work -->
+
+  <!-- ═══ ABOUT PAGE ═══ -->
+  <div id="page-about" class="page">
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-tag">Who We Are</div>
+        <h1>Built to elevate<br>brands that matter.</h1>
+        <p>We're a focused studio with a simple belief: when strategy and execution align, growth follows.</p>
+      </div>
+    </section>
+    <section class="section" style="background: white;">
+      <div class="container">
+        <div class="about-split fade-up">
+          <div>
+            <p class="about-lead">Everest Studio &amp; Media was built on the idea that most brands deserve better than what the agency market has delivered them.</p>
+            <div class="about-body">
+              <p>We started Everest because we kept seeing the same problem: businesses with real potential stuck with generic websites, inconsistent branding, and ad spend that couldn't justify itself. The work existed. The strategy was absent.</p>
+              <p>So we built a studio that does both — creative that looks exceptional and strategy that makes it perform. We keep our client roster intentionally small so that every brand we work with gets real attention, not a templated process.</p>
+              <p>We're based in New York and work with clients across the country. We like people who care about their brand as much as we do.</p>
+            </div>
+          </div>
+          <div class="about-visual">
+            <div class="about-visual-content">
+              <span class="big-num">EST.</span>
+              <h3>Everest Studio &amp; Media</h3>
+              <p>A studio built for brands that are serious about growth.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="background: var(--green-50); border-top: 1px solid var(--green-100);">
+      <div class="container">
+        <div class="section-header centered fade-up">
+          <span class="tag">What We Stand For</span>
+          <h2 class="section-title">The values behind the work.</h2>
+        </div>
+        <div class="values-grid">
+          <div class="value-card fade-up"><span class="value-icon">🎯</span><h3>Clarity Over Complexity</h3><p>We cut through the noise. Every strategy, every design decision, every recommendation is built around one question: does this actually help the business?</p></div>
+          <div class="value-card fade-up fade-up-delay-1"><span class="value-icon">🤝</span><h3>Partnership, Not Transactions</h3><p>We're most effective when we understand your business deeply. That requires trust, open communication, and a long view — not a project-and-forget mentality.</p></div>
+          <div class="value-card fade-up fade-up-delay-2"><span class="value-icon">📈</span><h3>Accountability to Results</h3><p>We don't hide behind vanity metrics. Our work is measured by leads generated, revenue driven, and brands that grow — and we report on it clearly and honestly.</p></div>
+          <div class="value-card fade-up fade-up-delay-3"><span class="value-icon">⚡</span><h3>Speed Without Compromise</h3><p>Brands don't have the luxury of waiting. We move fast, communicate clearly, and deliver work that doesn't require a second pass to be proud of.</p></div>
+        </div>
+      </div>
+    </section>
+    <section id="cta-section">
+      <div class="container" style="position:relative;z-index:1;">
+        <h2 class="section-title" style="color:white;">Work with a studio that's invested in your outcome.</h2>
+        <p class="section-sub" style="color:rgba(255,255,255,0.65); margin: 16px auto 44px;">Let's find out if we're the right fit.</p>
+        <div class="cta-actions">
+          <a onclick="showPage('contact')" class="btn btn-white btn-lg" style="cursor:pointer;">Get In Touch &rarr;</a>
+        </div>
+      </div>
+    </section>
+  </div><!-- /page-about -->
+
+  <!-- ═══ CONTACT PAGE ═══ -->
+  <div id="page-contact" class="page">
+    <section class="page-hero">
+      <div class="container">
+        <div class="hero-tag">Get In Touch</div>
+        <h1>Let's build something<br>great together.</h1>
+        <p>Tell us about your project. We'll get back to you within 48 hours — usually much sooner.</p>
+      </div>
+    </section>
+    <section class="section" style="background: white;">
+      <div class="container">
+        <div class="contact-wrap">
+          <div class="contact-info fade-up">
+            <h2>We'd love to hear from you.</h2>
+            <p>Whether you're starting from scratch or looking to level up what you already have, we're here to help you figure out the right move.</p>
+            <div class="contact-detail">
+              <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div><h4>Email</h4><a href="mailto:contact@EverestStudioandMedia.com" style="color:var(--gray-500);">contact@EverestStudioandMedia.com</a></div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div><h4>Response Time</h4><p>Within 48 hours — usually same day.</p></div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div><h4>Location</h4><p>New York, NY — working with clients nationwide.</p></div>
+            </div>
+          </div>
+          <div class="contact-form fade-up fade-up-delay-1">
+            <h3 class="form-title">Start the conversation.</h3>
+            <p class="form-sub">Fill out the form below and we'll reach out to schedule a free discovery call.</p>
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" placeholder="James"></div>
+              <div class="form-group"><label>Last Name</label><input type="text" placeholder="Rivera"></div>
+            </div>
+            <div class="form-group"><label>Email Address</label><input type="email" placeholder="james@yourcompany.com"></div>
+            <div class="form-group"><label>Company / Brand Name</label><input type="text" placeholder="Ridgeline Consulting"></div>
+            <div class="form-group">
+              <label>What are you interested in?</label>
+              <select>
+                <option value="">Select a service…</option>
+                <option>Web Design &amp; Development</option>
+                <option>Brand Identity</option>
+                <option>Paid Social Advertising</option>
+                <option>Full-Service Engagement</option>
+                <option>Not sure — let's talk</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Tell us about your project</label><textarea placeholder="What's your brand about? What are you trying to achieve? The more you share, the better the conversation we can have."></textarea></div>
+            <a onclick="alert('Thanks! In a live deployment this would submit your inquiry to contact@EverestStudioandMedia.com')" class="btn btn-primary btn-lg form-submit" style="cursor:pointer;">Send Message &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div><!-- /page-contact -->
+
+  <!-- SHARED FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 420" fill="none">
+              <path d="M70 320 L178 82 L218 128 L292 36 L450 320 Z" fill="white" opacity="0.85"/>
+              <path d="M178 82 L163 118 L170 108 L166 126 L178 114 L190 126 L186 108 L193 118 Z" fill="rgba(255,255,255,0.5)"/>
+              <path d="M292 36 L274 86 L282 72 L277 96 L292 82 L307 96 L302 72 L310 86 Z" fill="rgba(255,255,255,0.5)"/>
+              <text x="260" y="393" text-anchor="middle" font-family="Georgia, serif" font-size="82" font-weight="bold" fill="white" opacity="0.85" letter-spacing="6">EVEREST</text>
+              <text x="267" y="416" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="rgba(255,255,255,0.6)" letter-spacing="13">STUDIO &amp; MEDIA</text>
+            </svg>
+          </div>
+          <p>A full-service marketing studio specializing in web design, brand identity, and paid social — built to elevate your brand and drive real, measurable results.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a onclick="showPage('services')">Web Design &amp; Development</a></li>
+            <li><a onclick="showPage('services')">Brand Identity</a></li>
+            <li><a onclick="showPage('services')">Paid Social Advertising</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a onclick="showPage('about')">About Us</a></li>
+            <li><a onclick="showPage('work')">Our Work</a></li>
+            <li><a onclick="showPage('contact')">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul>
+            <li><a href="mailto:contact@EverestStudioandMedia.com">contact@EverestStudio<br>andMedia.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Everest Studio &amp; Media. All rights reserved.</p>
+        <p style="color:rgba(255,255,255,0.25); font-size:12px;">Designed by Everest.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      const navEl = document.getElementById('nav-' + name);
+      if (navEl) navEl.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      initFadeUps();
+    }
+
+    function closeMobile() {
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    function initFadeUps() {
+      const els = document.querySelectorAll('#page-' + currentPage() + ' .fade-up:not(.visible)');
+      if (!els.length) return;
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(el => obs.observe(el));
+    }
+
+    function currentPage() {
+      const active = document.querySelector('.page.active');
+      return active ? active.id.replace('page-', '') : 'home';
+    }
+
+    // Initial fade-ups
+    setTimeout(initFadeUps, 100);
+    // Make hero immediately visible
+    document.querySelectorAll('#hero .fade-up, #hero .hero-content, #hero .hero-title').forEach(el => el.classList.add('visible'));
+  </script>
+</body>
+</html>
